@@ -1,0 +1,114 @@
+---
+title: "Analysis on a sample of the transactions made in the King County"
+author: "shahal algunaid"
+date: "2023-06-21"
+output: html_document
+---
+```{r}
+
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+`kc_house_data.(2)` <- read.csv("C:/Users/aldul/OneDrive/Desktop/MASTER SHAHAL/kc_house_data (2).csv")
+   View(`kc_house_data.(2)`)
+    
+```
+
+
+#### <span style="color: red;"> Question 1/ Numerically summarize the price info by finding its minimum, maximum, range, mean, median, and the standard deviation of prices ? <span>
+#### <span style="color: blue;"> is numeric and summary data set  <span>
+```{r, echo = FALSE}
+is.numeric(`kc_house_data.(2)`$price)
+summary(`kc_house_data.(2)`$price)
+```
+
+
+#### <span style="color: blue;"> The Minimum of the price <span>
+```{r, echo = FALSE}
+min(`kc_house_data.(2)`$price)
+
+```
+
+#### <span style="color: blue;"> The Maximum of the price <span>
+```{r, echo = FALSE}
+max(`kc_house_data.(2)`$price)
+```
+
+#### <span style="color: blue;"> The range of the price <span>
+```{r, echo = FALSE}
+range(`kc_house_data.(2)`$price)
+```
+
+#### <span style="color: blue;"> The Mean of the price <span>
+```{r, echo = FALSE}
+mean(`kc_house_data.(2)`$price)
+```
+
+#### <span style="color: blue;"> The Median of the price <span>
+```{r, echo = FALSE}
+median(`kc_house_data.(2)`$price)
+```
+
+#### <span style="color: blue;"> The standard deviation of the price <span>
+```{r, echo = FALSE}
+sd(`kc_house_data.(2)`$price)
+```
+
+#### <span style="color: red;">Question 2/ Graphically summarize ? <span>
+##### <span style="color: red;">A/ Plot a histogram of prices ? <span>
+```{r, echo = FALSE}
+hist(`kc_house_data.(2)`$price, main = "Histogram of price", xlab= " price", ylab =  "Count")
+```
+
+##### <span style="color: red;">B/Plot the box plot of prices against view ? <span>
+```{r, echo = FALSE}
+boxplot(price ~ view, data=`kc_house_data.(2)`, notch = TRUE , 
+        col=c("red"),
+    main="price against view", xlab="view")
+```
+
+##### <span style="color: red;"> C/Scatter plot of prices against sqft_living ? <span>
+```{r, echo = FALSE}
+plot(`kc_house_data.(2)`$ sqft_living, `kc_house_data.(2)`$price,
+     main = "Scatter plot of price against sqft_living",
+     xlab = " sqft_living", ylab= "price")
+
+```
+
+#### <span style="color: red;">Question 3/ Build the following linear models to forecast the price and recommend the best model to the management ? <span>
+##### <span style="color: red;">A/ forecast price using bedrooms, bathrooms and sqft_living ? <span>
+
+```{r, echo = FALSE}
+linear_model1 <- lm( price ~ bedrooms + bathrooms + sqft_living , data = `kc_house_data.(2)`) 
+summary(linear_model1)
+```
+
+##### <span style="color: red;">B/  forecast the price using bedrooms, bathrooms and sqft_living and all the cross effects between them ? <span>
+```{r, echo = FALSE}
+linear_model2 <-   linear_model3 <- lm( price ~ bedrooms * bathrooms * sqft_living ,  data = `kc_house_data.(2)`)
+  summary(linear_model2)
+```
+
+##### <span style="color: red;">C/ forecast the price using bedrooms, bathrooms and sqft_living, waterfront and grade? <span>
+```{r, echo = FALSE}
+linear_model3 <- lm(price ~ bedrooms + bathrooms + sqft_living + waterfront + grade   , data = `kc_house_data.(2)`) 
+  summary(linear_model3)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
